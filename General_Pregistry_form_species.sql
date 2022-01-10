@@ -120,7 +120,7 @@ where ps.projectid = 98
 	'' as constraintmessother,
 	'' as default,
 	'' as calculation
-	from kobo_import.species  sp
+	from kobo_import.species sp
 inner join kobo_import.projectspecies ps on ps.speciesid = sp.id
 left join kobo_import.translations tr on tr.id = sp.translationid and tr.languecode = 'in'
 left join kobo_import.translations tren on tren.id = sp.translationid and tren.languecode = 'en'
@@ -396,6 +396,7 @@ order by speciesid asc,roworder asc;
 
 --Block survey species OUT parcel
 with cte as(
+	--line 1 (OK)
 	select sp.id as speciesid, 2 as  roworder, 
 	'calculate' as type_,
 	concat(species_code,'_nb_of_trees_out') as name_,
@@ -418,7 +419,7 @@ left join kobo_import.translations tr on tr.id = sp.translationid and tr.languec
 left join kobo_import.translations tren on tren.id = sp.translationid and tren.languecode = 'en'
 where ps.projectid = 98
 	union all
-	--line 2
+	--line 2 (OK)
 	select 9999990 as speciesid, 2 as  roworder, 
 	'calculate' as type_,
 	'nb_of_trees_before_dispatching_out' as name_,
@@ -436,7 +437,7 @@ where ps.projectid = 98
 	'' as default,
 	replace('if(selected(%DOL{parcel_relevant_for_planting_yn},''yes'') and %DOL{nb_of_trees_before_dispatching}!='''', %DOL{nb_of_trees_before_dispatching},0)','%DOL','$') as calculation
 	union all
-	--line 3
+	--line 3 (OK)
 	select 9999991 as speciesid, 2 as  roworder, 
 	'calculate' as type_,
 	'parcel_total_nb_of_trees_out' as name_,
@@ -498,7 +499,7 @@ with cte as(
 	'note' as type_,
 	'species_recap' as name_,
 	'**Total number of trees per species :**' as labelen,
-	'**Jumlah total pohon per spesies :**' as labelin,
+	'**Jumlah total pohon per spesies :**' as labelin, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -536,12 +537,12 @@ left join kobo_import.translations tr on tr.id = sp.translationid and tr.languec
 left join kobo_import.translations tren on tren.id = sp.translationid and tren.languecode = 'en'
 where ps.projectid = 98
 	union all
-	--ligne 3
+	--ligne 3 (OK)
 	select sp.id as speciesid, 3 as  roworder, 
 	'note' as type_,
-	concat(species_code,'_nb_of_trees_info') as name_,
+	concat(species_code,'_total_nb_note') as name_,
 	concat(coalesce(tren.translationlabel, sp.nom_latin) , ' Total number of trees : <span style="color:red">${',species_code,'_total_nb} trees</span>') as labelen,
-	concat(coalesce(tr.translationlabel, sp.nom_latin) , ' Jumlah total pohon : <span style="color:red">${',species_code,'_total_nb} pohon</span>') as labelin,
+	concat(coalesce(tr.translationlabel, sp.nom_latin) , ' Jumlah total pohon : <span style="color:red">${',species_code,'_total_nb} pohon</span>') as labelin, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
