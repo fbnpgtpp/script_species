@@ -156,7 +156,7 @@ left join kobo_import.translations tr on tr.id = sp.translationid and tr.languec
 left join kobo_import.translations tren on tren.id = sp.translationid and tren.languecode = 'en'
 where ps.projectid = 98
 	union all
-	--ligne 7
+	--ligne 7 (OK)
 	select sp.id as speciesid, 7 as  roworder, 
 	'note' as type_,
 	concat('trees_available_after_',species_code,'_note') as name_,
@@ -179,7 +179,7 @@ left join kobo_import.translations tr on tr.id = sp.translationid and tr.languec
 left join kobo_import.translations tren on tren.id = sp.translationid and tren.languecode = 'en'
 where ps.projectid = 98
 	union all
-	--ligne 8
+	--ligne 8 (OK)
 	select sp.id as speciesid, 8 as  roworder, 
 	'end_group' as type_,
 	'' as name_,
@@ -202,7 +202,7 @@ left join kobo_import.translations tr on tr.id = sp.translationid and tr.languec
 left join kobo_import.translations tren on tren.id = sp.translationid and tren.languecode = 'en'
 where ps.projectid = 98
 	union all
-	--ligne 9
+	--ligne 9 (OK)
 	select 99999996 as speciesid, 0 as  roworder, 
 	'calculate' as type_,
 	'remaining_trees' as name_,
@@ -227,12 +227,12 @@ where ps.projectid = 98
 		left join kobo_import.translations tren on tren.id = sp.translationid and tren.languecode = 'en'
 		where ps.projectid = 98) as calculation
 	union all
-	--ligne 10
+	--ligne 10 (OK)
 	select 99999997 as speciesid, 0 as  roworder, 
 	'note' as type_,
 	'remaining_trees_note' as name_,
 	replace('**Number of remaining trees :** %DOL{remaining_trees} trees','%DOL','$') as labelen,
-	replace('**Jumlah pohon yang tersisa :** %DOL{remaining_trees} pohon','%DOL','$') as labelin,
+	replace('**Jumlah pohon yang tersisa :** %DOL{remaining_trees} pohon','%DOL','$') as labelin, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -245,7 +245,7 @@ where ps.projectid = 98
 	'' as default,
 	'' as calculation
 	union all
-	--ligne 11
+	--ligne 11 (OK)
 	select 99999998 as speciesid, 0 as  roworder, 
 	'note' as type_,
 	'warning_remaining_trees' as name_,
@@ -263,7 +263,7 @@ where ps.projectid = 98
 	'' as default,
 	'' as calculation
 	union all
-	--ligne 12
+	--ligne 12 (OK)
 	select 99999999 as speciesid, 0 as  roworder, 
 	'end_group' as type_,
 	'' as name_,
@@ -281,7 +281,7 @@ where ps.projectid = 98
 	'' as default,
 	'' as calculation
 	union all
-	-- ligne 13
+	-- ligne 13 (OK)
 	select 999999990 as speciesid, 0 as  roworder, 
 	'end_group' as type_,
 	'' as name_,
@@ -299,7 +299,7 @@ where ps.projectid = 98
 	'' as default,
 	'' as calculation
 	union all
-	-- ligne 14
+	-- ligne 14 (OK)
 	select 999999991 as speciesid, 0 as  roworder, 
 	'begin_group' as type_,
 	'parcel_recapitulation' as name_,
@@ -317,7 +317,7 @@ where ps.projectid = 98
 	'' as default,
 	'' as calculation
 	union all
-	-- ligne 15 HERE
+	-- ligne 15 (OK)
 	select 999999992 as speciesid, 0 as  roworder, 
 	'calculate' as type_,
 	'parcel_total_nb_of_trees' as name_,
@@ -342,12 +342,12 @@ where ps.projectid = 98
 		left join kobo_import.translations tren on tren.id = sp.translationid and tren.languecode = 'en'
 		where ps.projectid = 98) as calculation
 	union all
-	-- ligne 16
+	-- ligne 16 (OK)
 	select 999999993 as speciesid, 0 as  roworder, 
 	'note' as type_,
 	'parcel_total_nb_of_trees_note' as name_,
 	replace('**Total number of trees :** : %DOL{parcel_total_nb_of_trees}','%DOL','$') as labelen,
-	replace('**Jumlah total pohon :** : %DOL{parcel_total_nb_of_trees}','%DOL','$') as labelin,
+	replace('**Jumlah total pohon :** : %DOL{parcel_total_nb_of_trees}','%DOL','$') as labelin, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -360,7 +360,7 @@ where ps.projectid = 98
 	'' as default,
 	'' as calculation
 	union all
-	-- ligne 17
+	-- ligne 17 (OK)
 	select 999999994 as speciesid, 0 as  roworder, 
 	'end_group' as type_,
 	'' as name_,
