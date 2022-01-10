@@ -93,7 +93,7 @@ where ps.projectid = 98
 	'' as constrainte,
 	'' as constraintmess,
 	'' as constraintmessother,
-	'0' as default,
+	'' as default,
 	replace(concat('round(%DOL{',
 	concat(species_code,'_nb_of_trees'),
 	'} div %DOL{nb_of_trees_before_dispatching}*100,2)'),'%DOL','$') as calculation
@@ -103,7 +103,7 @@ left join kobo_import.translations tr on tr.id = sp.translationid and tr.languec
 left join kobo_import.translations tren on tren.id = sp.translationid and tren.languecode = 'en'
 where ps.projectid = 98
 	union all
-	--ligne 5
+	--ligne 5 (OK)
 	select sp.id as speciesid, 5 as  roworder, 
 	'note' as type_,
 	concat(species_code,'_share_note') as name_,
@@ -126,7 +126,7 @@ left join kobo_import.translations tr on tr.id = sp.translationid and tr.languec
 left join kobo_import.translations tren on tren.id = sp.translationid and tren.languecode = 'en'
 where ps.projectid = 98
 	union all
-	--ligne 6
+	--ligne 6 (OK)
 	select sp.id as speciesid, 6 as  roworder, 
 	'calculate' as type_,
 	concat('trees_available_after_',species_code) as name_,
@@ -139,9 +139,9 @@ where ps.projectid = 98
 	'' as choicefilter,
 	'' as relevant,
 	'' as constrainte,
-	'You''ve entered too many trees.' as constraintmess,
-	'Anda telah memasukkan jumlah pohon yang terlalu banyak.' as constraintmessother, --CHANGE OR DELETE TRANSLATION
-	'0' as default,
+	'' as constraintmess,
+	'' as constraintmessother,
+	'' as default,
 	(SELECT replace(concat('%DOL{nb_of_trees_before_dispatching} - (',string_agg(concat('coalesce(${',
 		concat(species_code,'_nb_of_trees'),
 		'},0)'), ' + '),')'),'%DOL','$')
@@ -160,8 +160,8 @@ where ps.projectid = 98
 	select sp.id as speciesid, 7 as  roworder, 
 	'note' as type_,
 	concat('trees_available_after_',species_code,'_note') as name_,
-	replace(concat(	'<span style="color:#E6361D">',coalesce(tren.translationlabel, sp.nom_latin),' Number of trees remaining :</span> %DOL{trees_available_after_', species_code, '} trees'), '%DOL','$') as labelen,
-	replace(concat(	'<span style="color:#E6361D">',coalesce(tr.translationlabel, sp.nom_latin),' jumlah pohon yang tersisa :</span> %DOL{trees_available_after_', species_code, '} pohon'), '%DOL','$') as labelin, --CHANGE OR DELETE TRANSLATION
+	replace(concat(	'<span style="color:#E6361D">Number of trees remaining :</span> %DOL{trees_available_after_', species_code, '} trees'), '%DOL','$') as labelen,
+	replace(concat(	'<span style="color:#E6361D">jumlah pohon yang tersisa :</span> %DOL{trees_available_after_', species_code, '} pohon'), '%DOL','$') as labelin, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
