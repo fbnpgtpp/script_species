@@ -16,6 +16,9 @@ VALUES (99, 'Cherara', 56);
 -- INSERT TRANSLATIONS (OK) DONE
 INSERT INTO kobo_import.translations (id, languecode, translationlabel)
 VALUES 
+(65, 'kj' , 'Ndimu'),
+(242, 'kj' , 'Samutet'),
+(64, 'kj' , 'masanduku'),
 (913, 'en' , 'acacia tortilis'),
 (914, 'en' , 'loquat'),
 (915, 'en' , 'Avocado'),
@@ -62,6 +65,9 @@ VALUES
 -- UPDATE TRANSLATIONS DONE
 UPDATE kobo_import.translations
 SET translationlabel =  'african cordia' WHERE id = 242 and languecode = 'en';
+
+UPDATE kobo_import.translations
+SET translationlabel =  'lemon' WHERE id = 65 and languecode = 'en';
 
 -- INSERT SPECIES DONE
 INSERT INTO kobo_import.species (id, nom_vulgaire, nom_latin, famille, species_code, translationid)
