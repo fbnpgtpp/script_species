@@ -60,7 +60,13 @@ VALUES
 (931, 'kj' , 'calliandra'),
 (933, 'kj' , 'mwarubaini'),
 (934, 'kj' , 'Saptet'),
-(935, 'kj' , 'apurwet');
+(935, 'kj' , 'apurwet'),
+(939, 'en' , 'Grevillea'), --from here
+(939, 'kj' , 'Sebe sebe'),
+(937, 'en' , 'Macadamia'),
+(937, 'kj' , 'Macadamia'),
+(938, 'en' , 'Gliricidia'),
+(938, 'kj' , 'Gliricidia');
 
 -- UPDATE TRANSLATIONS DONE
 UPDATE kobo_import.translations
@@ -72,6 +78,7 @@ SET translationlabel =  'lemon' WHERE id = 65 and languecode = 'en';
 -- INSERT SPECIES DONE
 INSERT INTO kobo_import.species (id, nom_vulgaire, nom_latin, famille, species_code, translationid)
 VALUES 
+(890,'ficus','ficus','ficus',935),
 (868,'acacia tortilis','acacia tortilis','','acacia_tortilis',913),
 (869,'eriobotrya japonica','eriobotrya japonica','','eriobotrya_japonica',914),
 (870,'persea africana','persea africana','','persea_africana',915),
@@ -94,7 +101,10 @@ VALUES
 (887,'punica granatum','punica granatum','','punica_granatum',932),
 (888,'azadirachta indica','azadirachta indica','','azadirachta_indica',933),
 (889,'podocarpous falcatus','podocarpous falcatus','','podocarpous_falcatus',934),
-(891,'croton megalocarpus','croton megalocarpus','','croton_megalocarpus',936);
+(891,'croton megalocarpus','croton megalocarpus','','croton_megalocarpus',936),
+(892,'macadamia tetraphylla','macadamia tetraphylla','','macadamia_tetraphylla',937),--from here
+(893,'gliricidia sepium','gliricidia sepium','','gliricidia_sepium',938),
+(894,'grevillea robusta','grevillea robusta','','grevillea_robusta',939);
 
 -- INSERT PROJECTS SPECIES (OK) TODO
 INSERT INTO kobo_import.projectspecies (projectid, speciesid)
@@ -124,7 +134,10 @@ VALUES
 (99,887),
 (99,888),
 (99,889),
-(99,891);
+(99,891), 
+(99,892),--From here
+(99,893),
+(99,894);
 
 --VOIR ESPECES DU PROJET AVEC TRAD--
 select projectid, speciesid, b.id, nom_vulgaire, species_code, translationid, c.id, languecode, translationlabel
