@@ -29,8 +29,8 @@ with cte as(
 	select sp.id as speciesid, 2 as  roworder, 
 	'begin_group' as type_,
 	species_code as name_,
-	concat(sp.nom_latin, '-', tren.translationlabel) as labelen,
-	concat(sp.nom_latin, '-', tr.translationlabel) as labelkj,
+	concat(sp.nom_latin, ' - ', coalesce(tr.translationlabel, tren.translationlabel)) as labelen,
+	'' as labelkj,
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -52,8 +52,8 @@ where ps.projectid = 99
 	select sp.id as speciesid, 3 as  roworder, 
 	'integer' as type_,
 	concat(species_code,'_nb_of_trees') as name_,
-	concat('**',concat(sp.nom_latin, '-', tren.translationlabel) , ' number of trees :**') as labelen,
-	concat(concat(sp.nom_latin, '-', tr.translationlabel) , ' jumlah pohon') as labelkj, --CHANGE OR DELETE TRANSLATION
+	concat('**',concat(sp.nom_latin, ' - ', coalesce(tr.translationlabel, tren.translationlabel)) , ' number of trees :**') as labelen,
+	'' as labelkj, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'TRUE' as required,
@@ -69,7 +69,7 @@ where ps.projectid = 99
 		left join kobo_import.translations tren on tren.id = sp.translationid and tren.languecode = 'en'
 		where ps.projectid = 99) as constrainte,
 	'You''ve either enter a negative number or a number greater than the number of trees remaining. Please correct it.' as constraintmess,
-	'Anda telah memasukkan angka negatif atau angka yang lebih besar dari jumlah pohon yang tersisa. Harap perbaiki.' as constraintmessother, --CHANGE OR DELETE TRANSLATION
+	'' as constraintmessother, --CHANGE OR DELETE TRANSLATION
 	'0' as default,
 	'' as calculation
 	from kobo_import.species sp
@@ -107,8 +107,8 @@ where ps.projectid = 99
 	select sp.id as speciesid, 5 as  roworder, 
 	'note' as type_,
 	concat(species_code,'_share_note') as name_,
-	replace(concat('<span style="color:#099665">', concat(sp.nom_latin, '-', tren.translationlabel) , ' share :</span> %DOL{',species_code,'_share} %'),'%DOL','$') as labelen,
-	replace(concat('<span style="color:#099665">', concat(sp.nom_latin, '-', tr.translationlabel) , ' bagian :</span> %DOL{',species_code,'_share} %'),'%DOL','$') as labelkj, --CHANGE OR DELETE TRANSLATION
+	replace(concat('<span style="color:#099665">', concat(sp.nom_latin, ' - ', coalesce(tr.translationlabel, tren.translationlabel)) , ' share :</span> %DOL{',species_code,'_share} %'),'%DOL','$') as labelen,
+	'' as labelkj, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -161,7 +161,7 @@ where ps.projectid = 99
 	'note' as type_,
 	concat('trees_available_after_',species_code,'_note') as name_,
 	replace(concat(	'<span style="color:#E6361D">Number of trees remaining :</span> %DOL{trees_available_after_', species_code, '} trees'), '%DOL','$') as labelen,
-	replace(concat(	'<span style="color:#E6361D">jumlah pohon yang tersisa :</span> %DOL{trees_available_after_', species_code, '} pohon'), '%DOL','$') as labelkj, --CHANGE OR DELETE TRANSLATION
+	'' as labelkj, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -216,7 +216,7 @@ where ps.projectid = 99
 	'' as relevant,
 	'.=0' as constrainte,
 	'You''ve distributed fewer trees than you had planned. Please, distribute every trees or modify the "number of trees to plant" in previous section.' as constraintmess,
-	'Anda telah mendistribusikan lebih sedikit pohon daripada yang Anda rencanakan. Tolong, bagikan setiap pohon atau ubah "jumlah pohon yang akan ditanam" di bagian sebelumnya.' as constraintmessother, --CHANGE OR DELETE TRANSLATION
+	'' as constraintmessother, --CHANGE OR DELETE TRANSLATION
 	'' as default,
 	(SELECT replace(concat('%DOL{nb_of_trees_before_dispatching} - (',string_agg(concat('coalesce(${',
 		concat(species_code,'_nb_of_trees'),
@@ -232,7 +232,7 @@ where ps.projectid = 99
 	'note' as type_,
 	'remaining_trees_note' as name_,
 	replace('**Number of remaining trees :** %DOL{remaining_trees} trees','%DOL','$') as labelen,
-	replace('**Jumlah pohon yang tersisa :** %DOL{remaining_trees} pohon','%DOL','$') as labelkj, --CHANGE OR DELETE TRANSLATION
+	'' as labelkj, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -250,7 +250,7 @@ where ps.projectid = 99
 	'note' as type_,
 	'warning_remaining_trees' as name_,
 	replace('<span style="color:red">Warning  : You''ve distributed fewer trees than you had planned! **There are still %DOL{remaining_trees} trees left.** Please, distribute every trees or modify the "number of trees to plant" in previous section.</span>','%DOL','$') as labelen,
-	replace('<span style="color:red">Peringatan : Anda telah mendistribusikan lebih sedikit pohon daripada yang Anda rencanakan! **Masih ada %DOL{remaining_trees} pohon yang tersisa.** Harap bagikan setiap pohon atau ubah "jumlah pohon yang akan ditanam" di bagian sebelumnya.</span>','%DOL','$') as labelkj, --CHANGE OR DELETE TRANSLATION
+	'' as labelkj, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -347,7 +347,7 @@ where ps.projectid = 99
 	'note' as type_,
 	'parcel_total_nb_of_trees_note' as name_,
 	replace('**Total number of trees :** : %DOL{parcel_total_nb_of_trees}','%DOL','$') as labelen,
-	replace('**Jumlah total pohon :** : %DOL{parcel_total_nb_of_trees}','%DOL','$') as labelkj, --CHANGE OR DELETE TRANSLATION
+	'' as labelkj, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -482,14 +482,14 @@ order by speciesid asc,roworder asc;
 	-- choices block
                    
 select 'species', species_code as name_,
-	concat(sp.nom_latin, '-', tren.translationlabel) as labelen,
-	concat(sp.nom_latin, '-', tr.translationlabel) as labelkj
+	concat(sp.nom_latin, ' - ', coalesce(tr.translationlabel, tren.translationlabel)) as labelen,
+	'' as labelkj
 	from kobo_import.species sp
 inner join kobo_import.projectspecies ps on ps.speciesid = sp.id
 left join kobo_import.translations tr on tr.id = sp.translationid and tr.languecode = 'kj'
 left join kobo_import.translations tren on tren.id = sp.translationid and tren.languecode = 'en'
 where ps.projectid = 99
-order by concat(sp.nom_latin, '-', tr.translationlabel) ;
+order by concat(sp.nom_latin, ' - ', coalesce(tr.translationlabel, tren.translationlabel)) ;
 	
 	-- Recap block	
 
@@ -499,7 +499,7 @@ with cte as(
 	'note' as type_,
 	'species_recap' as name_,
 	'**Total number of trees per species :**' as labelen,
-	'**Jumlah total pohon per spesies :**' as labelkj, --CHANGE OR DELETE TRANSLATION
+	'' as labelkj, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -541,8 +541,8 @@ where ps.projectid = 99
 	select sp.id as speciesid, 3 as  roworder, 
 	'note' as type_,
 	concat(species_code,'_total_nb_note') as name_,
-	concat(concat(sp.nom_latin, '-', tren.translationlabel) , ' Total number of trees : <span style="color:red">${',species_code,'_total_nb} trees</span>') as labelen,
-	concat(concat(sp.nom_latin, '-', tr.translationlabel) , ' Jumlah total pohon : <span style="color:red">${',species_code,'_total_nb} pohon</span>') as labelkj, --CHANGE OR DELETE TRANSLATION
+	concat(concat(sp.nom_latin, ' - ', coalesce(tr.translationlabel, tren.translationlabel)) , ' Total number of trees : <span style="color:red">${',species_code,'_total_nb} trees</span>') as labelen,
+	'' as labelkj, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
