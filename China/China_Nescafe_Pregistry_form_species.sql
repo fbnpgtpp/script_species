@@ -12,7 +12,7 @@ with cte as(
 	'begin_group' as type_,
 	'species_selection' as name_,
 	'Species selection' as labelen,
-	'' as labelin,
+	'树种选择' as labelin,
 	'' as hinten,
 	'' as hintin,
 	'false' as required,
