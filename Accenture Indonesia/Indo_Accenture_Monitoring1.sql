@@ -27,7 +27,7 @@ with cte as(
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 99)
+where ps.projectid = 98)
 select type_,
 	name_,
 	labelen,
@@ -53,7 +53,7 @@ with cte as(
 	'begin_group' as type_,
 	code as name_,
 	replace(concat(coalesce(tren.translationlabel, sp.latinname), ' (Delivered at the farmer for all parcels : %DOL{',code,'_nb_delivered_trees} trees)'),'%DOL','$') as labelen,
-	replace(concat(coalesce(tr.translationlabel, sp.latinname), ' (Delivered at the farmer for all parcels : %DOL{',code,'_nb_delivered_trees} trees)'),'%DOL','$') as labelin,
+	replace(concat(coalesce(tr.translationlabel, sp.latinname), ' (Dikirim ke petani untuk semua parsels : %DOL{',code,'_nb_delivered_trees} pohon)'),'%DOL','$') as labelin,
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -69,14 +69,14 @@ with cte as(
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 99
+where ps.projectid = 98
 	union all
 	--ligne 3 (OK)
 	select sp.id as speciesid, 3 as  roworder, 
 	'integer' as type_,
 	concat(code,'_nb_living_trees_monitoring1') as name_,
 	concat(coalesce(tren.translationlabel, sp.latinname) , ' - <span style="color:red">Living</span> trees at monitoring 1 :') as labelen,
-	concat(coalesce(tr.translationlabel, sp.latinname) , ' - Phon <span style="color:red">hidup</span> di pemantauan 1 :') as labelin, --CHANGE OR DELETE TRANSLATION
+	concat(coalesce(tr.translationlabel, sp.latinname) , ' - Pohon <span style="color:red">hidup</span> di pemantauan 1 :') as labelin, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'TRUE' as required,
@@ -92,7 +92,7 @@ where ps.projectid = 99
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 99
+where ps.projectid = 98
 	union all
 	--ligne 4 (OK)
 	select sp.id as speciesid, 8 as  roworder, 
@@ -115,7 +115,7 @@ where ps.projectid = 99
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 99)
+where ps.projectid = 98)
 select type_,
 	name_,
 	labelen,
@@ -157,7 +157,7 @@ with cte as(
 		inner join projectspecies ps on ps.speciesid = sp.id
 		left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 		left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-		where ps.projectid = 99) as calculation)
+		where ps.projectid = 98) as calculation)
 select type_,
 	name_,
 	labelen,
@@ -198,7 +198,7 @@ with cte as(
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 99
+where ps.projectid = 98
 	union all
 	--line 2 (OK)
 	select 9999991 as speciesid, 2 as  roworder, 
@@ -223,7 +223,7 @@ where ps.projectid = 99
 		inner join projectspecies ps on ps.speciesid = sp.id
 		left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 		left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-		where ps.projectid = 99) as calculation)
+		where ps.projectid = 98) as calculation)
 select type_,
 	name_,
 	labelen,
@@ -251,7 +251,7 @@ select 'species', code as name_,
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 99
+where ps.projectid = 98
 order by coalesce(tr.translationlabel, sp.latinname) ;
 	
 	-- Recap block	
@@ -278,7 +278,7 @@ with cte as(
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 99
+where ps.projectid = 98
 	union all
 	--ligne 2
 	select sp.id as speciesid, 2 as  roworder, 
@@ -303,7 +303,7 @@ where ps.projectid = 99
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 99
+where ps.projectid = 98
 	union all
 	--ligne 3 (OK)
 	select sp.id as speciesid, 3 as  roworder, 
@@ -326,7 +326,7 @@ where ps.projectid = 99
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 99
+where ps.projectid = 98
 	union all
 	--ligne 4 (OK)
 	select sp.id as speciesid, 4 as  roworder, 
@@ -349,7 +349,7 @@ where ps.projectid = 99
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 99
+where ps.projectid = 98
 	union all
 	--ligne 5 (OK)
 	select sp.id as speciesid, 5 as  roworder, 
@@ -372,14 +372,14 @@ where ps.projectid = 99
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 99
+where ps.projectid = 98
 	union all
 	--ligne 6 (OK)
 	select sp.id as speciesid, 6 as  roworder, 
-	'text' as type_,
+	'select_multiple risk_for_trees_survival ' as type_,
 	concat('recap_',code,'_comments') as name_,
-	concat('Comments about ',coalesce(tren.translationlabel, sp.latinname)) as labelen,
-	concat('komentar tentang ',coalesce(tr.translationlabel, sp.latinname)) as labelin, --CHANGE OR DELETE TRANSLATION
+	concat('Significative mortality causes for ',coalesce(tren.translationlabel, sp.latinname)) as labelen,
+	concat('Penyebab kematian yang signifikan untuk ',coalesce(tr.translationlabel, sp.latinname)) as labelin, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -395,7 +395,7 @@ where ps.projectid = 99
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 99)
+where ps.projectid = 98)
 select type_,
 	name_,
 	labelEN,
