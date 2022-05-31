@@ -309,8 +309,8 @@ where ps.projectid = 99
 	select sp.id as speciesid, 3 as  roworder, 
 	'note' as type_,
 	concat('recap_',species_code,'_total_nb_living_note') as name_,
-	replace(concat(coalesce(tren.translationlabel, sp.nom_latin),' - Total number of living trees : %DOL{recap_',species_code,'_total_nb_living_note} trees'),'%DOL','$') as labelen,
-	replace(concat(coalesce(tr.translationlabel, sp.nom_latin),' - Total number of living trees : %DOL{recap_',species_code,'_total_nb_living_note} trees'),'%DOL','$')as labelin, --CHANGE OR DELETE TRANSLATION
+	replace(concat(coalesce(tren.translationlabel, sp.nom_latin),' - Total number of living trees : %DOL{recap_',species_code,'_total_nb_living} trees'),'%DOL','$') as labelen,
+	replace(concat(coalesce(tr.translationlabel, sp.nom_latin),' - Total number of living trees : %DOL{recap_',species_code,'_total_nb_living} trees'),'%DOL','$')as labelin, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -355,8 +355,8 @@ where ps.projectid = 99
 	select sp.id as speciesid, 5 as  roworder, 
 	'note' as type_,
 	concat('recap_loss_rate_delivered_monitoring1_',species_code,'_note') as name_,
-	replace(concat(coalesce(tren.translationlabel, sp.nom_latin),' - Total number of living trees : %DOL{recap_',species_code,'_total_nb_living_note} trees'),'%DOL','$') as labelen,
-	replace(concat(coalesce(tr.translationlabel, sp.nom_latin),' - Total number of living trees : %DOL{recap_',species_code,'_total_nb_living_note} trees'),'%DOL','$') as labelin, --CHANGE OR DELETE TRANSLATION
+	replace(concat(coalesce(tren.translationlabel, sp.nom_latin),' - Loss rate : %DOL{recap_loss_rate_delivered_monitoring1_',species_code,'} trees'),'%DOL','$') as labelen,
+	replace(concat(coalesce(tr.translationlabel, sp.nom_latin),' - Loss rate : %DOL{recap_loss_rate_delivered_monitoring1_',species_code,'} trees'),'%DOL','$') as labelin, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
