@@ -27,7 +27,7 @@ with cte as(
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 98)
+where ps.projectid = 3)
 select type_,
 	name_,
 	labelen,
@@ -52,8 +52,8 @@ with cte as(
 	select sp.id as speciesid, 2 as  roworder, 
 	'begin_group' as type_,
 	code as name_,
-	replace(concat(coalesce(tren.translationlabel, sp.latinname), ' (Delivered at the farmer for all parcels : %DOL{',code,'_nb_delivered_trees} trees)'),'%DOL','$') as labelen,
-	replace(concat(coalesce(tr.translationlabel, sp.latinname), ' (Dikirim ke petani untuk semua parsels : %DOL{',code,'_nb_delivered_trees} pohon)'),'%DOL','$') as labelin,
+	replace(concat(coalesce(tren.translationlabel, sp.latinname)),'%DOL','$') as labelen,
+	replace(concat(coalesce(tr.translationlabel, sp.latinname)),'%DOL','$') as labelin,
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -69,14 +69,14 @@ with cte as(
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 98
+where ps.projectid = 3
 	union all
 	--ligne 3 (OK)
 	select sp.id as speciesid, 3 as  roworder, 
 	'integer' as type_,
 	concat(code,'_nb_living_trees_monitoring1') as name_,
-	concat(coalesce(tren.translationlabel, sp.latinname) , ' - <span style="color:red">Living</span> trees at monitoring 1 :') as labelen,
-	concat(coalesce(tr.translationlabel, sp.latinname) , ' - Pohon <span style="color:red">hidup</span> di pemantauan 1 :') as labelin, --CHANGE OR DELETE TRANSLATION
+	replace(concat(coalesce(tren.translationlabel, sp.latinname) , ' - <span style="color:red">Living</span> trees at monitoring 1 (Delivered at the farmer for all parcels : %DOL{',code,'_nb_delivered_trees} trees) :'),'%DOL','$') as labelen,
+	replace(concat(coalesce(tr.translationlabel, sp.latinname) , ' - Pohon <span style="color:red">hidup</span> di pemantauan 1 (Dikirim ke petani untuk semua parsels : %DOL{',code,'_nb_delivered_trees} pohon) :'),'%DOL','$') as labelin, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'TRUE' as required,
@@ -92,7 +92,7 @@ where ps.projectid = 98
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 98
+where ps.projectid = 3
 	union all
 	--ligne 4 (OK)
 	select sp.id as speciesid, 8 as  roworder, 
@@ -115,7 +115,7 @@ where ps.projectid = 98
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 98)
+where ps.projectid = 3)
 select type_,
 	name_,
 	labelen,
@@ -157,7 +157,7 @@ with cte as(
 		inner join projectspecies ps on ps.speciesid = sp.id
 		left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 		left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-		where ps.projectid = 98) as calculation)
+		where ps.projectid = 3) as calculation)
 select type_,
 	name_,
 	labelen,
@@ -198,7 +198,7 @@ with cte as(
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 98
+where ps.projectid = 3
 	union all
 	--line 2 (OK)
 	select 9999991 as speciesid, 2 as  roworder, 
@@ -223,7 +223,7 @@ where ps.projectid = 98
 		inner join projectspecies ps on ps.speciesid = sp.id
 		left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 		left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-		where ps.projectid = 98) as calculation)
+		where ps.projectid = 3) as calculation)
 select type_,
 	name_,
 	labelen,
@@ -251,7 +251,7 @@ select 'species', code as name_,
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 98
+where ps.projectid = 3
 order by coalesce(tr.translationlabel, sp.latinname) ;
 	
 	-- Recap block	
@@ -278,7 +278,7 @@ with cte as(
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 98
+where ps.projectid = 3
 	union all
 	--ligne 2
 	select sp.id as speciesid, 2 as  roworder, 
@@ -303,14 +303,14 @@ where ps.projectid = 98
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 98
+where ps.projectid = 3
 	union all
 	--ligne 3 (OK)
 	select sp.id as speciesid, 3 as  roworder, 
 	'note' as type_,
 	concat('recap_',code,'_total_nb_living_note') as name_,
-	replace(concat(coalesce(tren.translationlabel, sp.latinname),' - Total number of living trees : %DOL{recap_',code,'_total_nb_living_note} trees'),'%DOL','$') as labelen,
-	replace(concat(coalesce(tr.translationlabel, sp.latinname),' - Jumlah total pohon hidup : %DOL{recap_',code,'_total_nb_living_note} pohon'),'%DOL','$')as labelin, --CHANGE OR DELETE TRANSLATION
+	replace(concat(coalesce(tren.translationlabel, sp.latinname),' - Total number of living trees : %DOL{recap_',code,'_total_nb_living} trees'),'%DOL','$') as labelen,
+	replace(concat(coalesce(tr.translationlabel, sp.latinname),' - Jumlah total pohon hidup : %DOL{recap_',code,'_total_nb_living} pohon'),'%DOL','$')as labelin, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -326,7 +326,7 @@ where ps.projectid = 98
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 98
+where ps.projectid = 3
 	union all
 	--ligne 4 (OK)
 	select sp.id as speciesid, 4 as  roworder, 
@@ -344,19 +344,19 @@ where ps.projectid = 98
 	'' as constraintmess,
 	'' as constraintmessother,
 	'' as default,
-	replace(concat('round(1-(%DOL{recap_',code,'_total_nb_living} div %DOL{',code,'_nb_delivered_trees})*100, 2)'),'%DOL','$') as calculation
+	replace(concat('round((1-(%DOL{recap_',code,'_total_nb_living} div %DOL{',code,'_nb_delivered_trees}))*100, 2)'),'%DOL','$') as calculation
 	from species sp
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 98
+where ps.projectid = 3
 	union all
 	--ligne 5 (OK)
 	select sp.id as speciesid, 5 as  roworder, 
 	'note' as type_,
 	concat('recap_loss_rate_delivered_monitoring1_',code,'_note') as name_,
-	replace(concat(coalesce(tren.translationlabel, sp.latinname),' - Total number of living trees : %DOL{recap_',code,'_total_nb_living_note} trees'),'%DOL','$') as labelen,
-	replace(concat(coalesce(tr.translationlabel, sp.latinname),' - Jumlah total pohon hidup : %DOL{recap_',code,'_total_nb_living_note} pohon'),'%DOL','$') as labelin, --CHANGE OR DELETE TRANSLATION
+	replace(concat(coalesce(tren.translationlabel, sp.latinname),' - Loss rate : %DOL{recap_loss_rate_delivered_monitoring1_',code,'} %'),'%DOL','$') as labelen,
+	replace(concat(coalesce(tr.translationlabel, sp.latinname),' - tingkat kerugian : %DOL{recap_loss_rate_delivered_monitoring1_',code,'} %'),'%DOL','$') as labelin, --CHANGE OR DELETE TRANSLATION
 	'' as hinten,
 	'' as hintin,
 	'' as required,
@@ -372,7 +372,7 @@ where ps.projectid = 98
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 98
+where ps.projectid = 3
 	union all
 	--ligne 6 (OK)
 	select sp.id as speciesid, 6 as  roworder, 
@@ -395,7 +395,7 @@ where ps.projectid = 98
 inner join projectspecies ps on ps.speciesid = sp.id
 left join translations tr on tr.id = sp.translationid and tr.languagecode = 'in'
 left join translations tren on tren.id = sp.translationid and tren.languagecode = 'en'
-where ps.projectid = 98)
+where ps.projectid = 3)
 select type_,
 	name_,
 	labelEN,

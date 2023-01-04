@@ -1,17 +1,7 @@
--- INSERT INTO table_name (column1, column2, column3, ...)
--- VALUES (value1, value2, value3, ...);
 
--- UPDATE table_name
--- SET column1 = value1, column2 = value2, ...
--- WHERE condition;
-
-
--- INSERT PROJECT
-INSERT INTO schemav5.projects (internalid, regionid, projectname,projectcountry)
-VALUES (104, 5, "Mexico_Veracruz","mexico");
 
 -- INSERT TRANSLATIONS
-INSERT INTO schemav5.translations (id, languagecode, translationlabel)
+INSERT INTO public.translations (id, languagecode, translationlabel)
 VALUES 
 (241,'mx','Candelillo'),
 (40,'mx','Cedro'),
@@ -33,12 +23,12 @@ VALUES
 (1004,'mx','Zapote negro');
 
 -- UPDATE TRANSLATIONS
-UPDATE schemav5.translations
+UPDATE public.translations
 SET translationlabel =  'Bur flower'
 WHERE id = 123 and languagecode = 'en';
 
 -- INSERT SPECIES
-INSERT INTO schemav5.species (id, vulgarname, latinname, speciesfamily, code, translationid, mainspeciesid, treecategid)
+INSERT INTO public.species (id, vulgarname, latinname, speciesfamily, code, translationid, mainspeciesid, treecategid)
 VALUES 
 (1103,'Cupania dentata','Cupania dentata','','cupania_dentata',994,1103,0),
 (1104,'Cecopia obtusifolia','Cecopia obtusifolia','','cecopia_obtusifolia',995,1104,0),
@@ -54,20 +44,20 @@ VALUES
 
 -- UPDATE SPECIES
 
-UPDATE schemav5.species
+UPDATE public.species
 SET translationid =  '991'
 WHERE id = 344;
 
-UPDATE schemav5.species
+UPDATE public.species
 SET translationid =  '992'
 WHERE id = 330;
 
-UPDATE schemav5.species
+UPDATE public.species
 SET translationid =  '993'
 WHERE id = 185;
 
 -- INSERT PROJECTS SPECIES
-INSERT INTO schemav5.projectspecies (projectid, speciesid)
+INSERT INTO public.projectspecies (projectid, speciesid)
 VALUES 
 (104,644),
 (104,143),
